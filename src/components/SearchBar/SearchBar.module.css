@@ -1,0 +1,39 @@
+.header{
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+}
+.input{
+    height: 22px;
+}
+
+.btncontainer{
+    position: fixed;
+    top: -6px;
+    left: 50%;
+    /* transform: translateX(-10%); */
+}
+.slidebtn{
+    /* position: fixed; */
+    /* padding: 10px 20px; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.slidebtn:hover{
+    background-color: #fa9b9b;
+}
+@keyframes slideIn
+{
+    from{
+        transform: translateX(-250%);
+    } to {
+        transform: translateX(190%);
+    }
+}
+
+.slidebtn{ 
+    animation: slideIn 0.5s forwards;
+}

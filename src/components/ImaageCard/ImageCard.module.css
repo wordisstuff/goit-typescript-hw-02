@@ -1,0 +1,20 @@
+.list{
+    list-style: none;
+    width: 350px;
+    height: 300;
+}
+.img{
+    margin-bottom: 8px;
+}
+
+.imageInfo {
+    font-size: 12px;
+    width: 300px;
+    height: 30px;
+    border-radius: 0 25px;
+    background-color: #1c0606;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
