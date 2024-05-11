@@ -13,13 +13,13 @@ import { requestPhotosByQuery } from "./services/api";
 import { useEffect, useState } from "react";
 
 import toast from "react-hot-toast";
-import { ImgUrlType, Photos } from "./types";
+import { ImgUrlType, Photos, Respons } from "./types";
 
 
-function App() {
+function App()  {
   const [photos, setPhotos] = useState<Photos[] | null >  (null);
   const [isLoading, setIsloading] = useState<Boolean>(false);
-  const [isError, setIserror] = useState<boolean>(false);
+  const [isError, setIserror] = useState<Boolean>(false);
   const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -31,10 +31,10 @@ function App() {
     async function fetchPhotosByQuery() {
       try {
         setIsloading(true);
-        const data = await requestPhotosByQuery(query, page);
+        const data = await requestPhotosByQuery<Respons>(query, page);
         !photos
-          ? setPhotos(data.results)
-          : setPhotos((prev) => [...prev, ...data.results]);
+          ? setPhotos(data.results as Photos[])
+          : setPhotos([...photos, ...data.results as Photos[]]);
 
         setTotalPages(data.total_pages);
       } catch (error) {
@@ -46,12 +46,12 @@ function App() {
     fetchPhotosByQuery();
   }, [query, page]);
 
-  const loadMorePage = () => {
+  const loadMorePage = (): void => {
     setIsloading(true);
     page < totalPages ? setPage((prev) => prev + 1) : page;
   };
 
-  const setSearchBarQuery = (query) => {
+  const setSearchBarQuery = (query: string): void => {
     if (query !== "") {
       setQuery(query);
       setPhotos([]);
@@ -61,11 +61,11 @@ function App() {
     }
   };
 
-  const openModal = (img) => {
+  const openModal = (img: ImgUrlType): void => {
     setModalImg(img);
     setOpenCloseModal(true);
   };
-  const closeModal = () => setOpenCloseModal(false);
+  const closeModal = (): void => setOpenCloseModal(false);
 
   return (
     <>
@@ -77,7 +77,7 @@ function App() {
       {isError ? (
         <ErroreMessage />
       ) : (
-        <ImageGallery photos={photos} openModal={openModal} />
+        <ImageGallery photos={photos as Photos[]} openModal={openModal} />
       )}
       {photos && page < totalPages && <LoadMoreBtn pageChange={loadMorePage} />}
       <ImageModal

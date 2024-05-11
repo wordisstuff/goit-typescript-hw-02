@@ -1,12 +1,11 @@
-const LoadMoreBtn = ({ pageChange }) => {
-  const handleClick = (e) => {
-    e.preventDefault();
+const LoadMoreBtn: React.FC<{ pageChange: () => void }> = ({ pageChange }) => {
+  const handleClick = () => {
     pageChange();
   };
 
   return (
     <>
-      <button onClick={handleClick} type="submit">
+      <button onClick={handleClick} type="button">
         ...
       </button>
     </>

@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 import CSS from "./SearchBar.module.css";
 import { Toaster } from "react-hot-toast";
+import { SearchBarProps } from "../../types";
 
-const SearchBar = ({ setSearchBarQuery, isError }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ setSearchBarQuery, isError }) => {
   const [value, setValue] = useState("");
   const [btnOff, setBtnOff] = useState(true);
 
-  const handleChenge = ({ target }) => {
+  const handleChenge = ({ target } : ChangeEvent<HTMLInputElement>) => {
     setBtnOff(true);
     setValue(target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:FormEvent<HTMLFormElement>):void => {
     e.preventDefault();
     setBtnOff(false);
     setSearchBarQuery(value.trim());
