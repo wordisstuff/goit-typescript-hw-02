@@ -1,5 +1,5 @@
 export interface Photos {
-  id: number;
+  id: string;
   description: string;
   urls: {
     small: string;

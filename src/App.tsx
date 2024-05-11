@@ -18,13 +18,13 @@ import { ImgUrlType, Photos, Respons } from "./types";
 
 function App()  {
   const [photos, setPhotos] = useState<Photos[] | null >  (null);
-  const [isLoading, setIsloading] = useState<Boolean>(false);
-  const [isError, setIserror] = useState<Boolean>(false);
+  const [isLoading, setIsloading] = useState<boolean>(false);
+  const [isError, setIserror] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [modalImg, setModalImg] = useState<ImgUrlType | null>(null);
-  const [openCloseModal, setOpenCloseModal] = useState<Boolean>(false);
+  const [openCloseModal, setOpenCloseModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (query.length === 0) return;
